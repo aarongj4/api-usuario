@@ -19,9 +19,14 @@
   },
   "homepage": "https://github.com/aarongj4/api-usuario#readme",
   "dependencies": {
+    "bcrypt": "^5.1.1",
     "body-parser": "^2.2.0",
     "dotenv": "^16.4.7",
     "express": "^5.1.0",
-    "mongodb": "^6.15.0"
+    "jsonwebtoken": "^9.0.2",
+    "mongodb": "^6.15.0",
+    "mongoose": "^8.13.2",
+    "swagger-autogen": "^2.23.7",
+    "swagger-ui-express": "^5.0.1"
   }
 }
