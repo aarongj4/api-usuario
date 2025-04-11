@@ -29,11 +29,16 @@ class usersModel {
         // const colUsers = dbClient.db.collection('users');
         // return await colUsers.find({}).toArray();
     }
-    async getOne(id){
+    async getOneByID(id){
         return await User.findById(id);
         // const colUsers = dbClient.db.collection('users');
         // return await colUsers.findOne({_id : new ObjectId(id) });
     }
+
+    async getOne(filtro){
+        return await User.findOne(filtro);
+    }
+
 
 }
 

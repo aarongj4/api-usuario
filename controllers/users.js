@@ -1,4 +1,7 @@
 import userModel from '../models/users.js';
+import bcrypt from 'bcrypt';
+
+
 class usersController {
 
     constructor() {
@@ -6,13 +9,40 @@ class usersController {
     }
 
 
+
+    async login(req, res) {
+
+
+
+    }
+
     async create(req, res) {
         try {
 
-            const data = await userModel.create(req.body);
+            const { nombre, email, password, rol, fechaRegistro, status } = req.body;
+            const usuarioExiste = await userModel.getOne({ email });
+
+            if(usuarioExiste){
+                return res.status(400).json({ error: 'El usuario ya existe' });
+            }
+
+            const passwordEncrypt = await bcrypt.hash(password, 10);
+
+
+            const data = await userModel.create({
+                nombre,
+                email,
+                password: passwordEncrypt, 
+                rol,
+                fechaRegistro,
+                status
+
+            });
             res.status(201).json(data);
             
         } catch (error) {
+            console.log(error);
+            
             res.status(500).send(error);
         }
     }
