@@ -6,9 +6,17 @@ import dbClient from './config/dbClient.js';
 
 const app = express();
 
+import swaggerUI from 'swagger-ui-express';
+import swaggerDocumentation from './swagger.json' with { type: 'json' };
+
+
+
+
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
+app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocumentation) );
 app.use('/users', routesUsers );
 
 try {
