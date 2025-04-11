@@ -1,6 +1,8 @@
 import userModel from '../models/users.js';
 import bcrypt from 'bcrypt';
 import { validarPassword } from '../utils/validarPassword.js';
+import { generarToken } from '../helpers/autenticacion.js';
+import jsonwebtoken from 'jsonwebtoken';
 
 class usersController {
 
@@ -26,7 +28,10 @@ class usersController {
             return res.status(400).json({ error: 'Credenciales incorrectas' });
         }
 
-        return res.status(200).json({ msg: 'Usuario autenticado' })
+        
+        const token = generarToken(email);
+
+        return res.status(200).json({ msg: 'Usuario autenticado.', token })
     }
 
     async create(req, res) {
