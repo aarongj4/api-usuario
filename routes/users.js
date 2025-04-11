@@ -3,6 +3,7 @@ const route = express.Router();
 
 import usersController from '../controllers/users.js'
 
+route.post('/login', usersController.login );
 
 route.post('/', usersController.create );
 route.get('/',  usersController.getAll ); 

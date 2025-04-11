@@ -19,11 +19,7 @@ const usersSchema = new mongoose.Schema(
         password: {
             type: String,
             required: [true, 'La contraseña es obligatoria'],
-            minlength: [8, 'La contraseña debe tener al menos 8 caracteres'],
-            match: [
-                /^(?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9])/,
-                'La contraseña debe tener mayúsculas, minúsculas y al menos un símbolo'
-            ]
+            
         },
         rol: {
             type: String,
