@@ -21,7 +21,7 @@ class usersController {
         try {
             const { id } = req.params;
             const data = await userModel.update(id, req.body );
-            res.status(200).json(data)
+            res.status(200).json(data);
             
         } catch (error) {
             res.status(500).send(error);
@@ -32,7 +32,7 @@ class usersController {
         try {
             const { id } = req.params;
             const data = await userModel.delete(id);
-            res.status(200).json(data)
+            res.status(200).json(data);
 
             // res.status(206).json({ status: 'delete ok'})
             
