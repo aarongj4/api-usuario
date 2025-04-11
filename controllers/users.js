@@ -110,7 +110,7 @@ class usersController {
 
 
             const data = await userModel.getAll();
-            res.status(201).json(data);
+            res.status(200).json(data);
 
         } catch (error) {
             res.status(500).send(error);
@@ -122,7 +122,7 @@ class usersController {
 
             const { id } = req.params;
             const data = await userModel.getOne(id);
-            res.status(201).json({ data })
+            res.status(200).json({ data })
 
         } catch (error) {
             res.status(500).send(error);
@@ -133,7 +133,7 @@ class usersController {
 
             const { id } = req.params;
             const data = await userModel.getOneByID(id);
-            res.status(201).json({ data })
+            res.status(200).json({ data })
 
         } catch (error) {
             res.status(500).send(error);

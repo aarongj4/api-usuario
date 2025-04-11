@@ -14,7 +14,7 @@
   "paths": {
     "/users/login": {
       "post": {
-        "description": "",
+        "description": "Este endpoint permite autenticar a un usuario con su email y contraseña.",
         "parameters": [
           {
             "name": "body",
@@ -34,17 +34,17 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Usuario autenticado."
           },
           "400": {
-            "description": "Bad Request"
+            "description": "Credenciales incorrectas"
           }
         }
       }
     },
     "/users/": {
       "get": {
-        "description": "",
+        "description": "Obtiene la lista de todos los usuarios registrados. Requiere autenticación mediante token JWT y Permisos de Administrador.",
         "parameters": [
           {
             "name": "Authorization",
@@ -53,11 +53,11 @@
           }
         ],
         "responses": {
-          "201": {
-            "description": "Created"
+          "200": {
+            "description": "Se obtuvieron los datos"
           },
           "401": {
-            "description": "Unauthorized"
+            "description": "Token. no valido"
           },
           "403": {
             "description": "Forbidden"
@@ -68,7 +68,7 @@
         }
       },
       "post": {
-        "description": "",
+      "description": "Crea un nuevo usuario con los datos proporcionados en el cuerpo de la petición. Requiere autenticación",
         "parameters": [
           {
             "name": "Authorization",
@@ -111,7 +111,7 @@
             "description": "Bad Request"
           },
           "401": {
-            "description": "Unauthorized"
+            "description": "Token. no valido"
           },
           "403": {
             "description": "Forbidden"
@@ -124,7 +124,7 @@
     },
     "/users/{id}": {
       "get": {
-        "description": "",
+        "description": "Obtiene los datos de un usuario específico según su ID.",
         "parameters": [
           {
             "name": "id",
@@ -139,11 +139,11 @@
           }
         ],
         "responses": {
-          "201": {
-            "description": "Created"
+          "200": {
+            "description": "Se obtuvieron los datos"
           },
           "401": {
-            "description": "Unauthorized"
+            "description": "Token. no valido"
           },
           "403": {
             "description": "Forbidden"
@@ -154,7 +154,7 @@
         }
       },
       "put": {
-        "description": "",
+        "description": "Actualiza la información de un usuario específico identificado por su ID. Requiere autenticación.",
         "parameters": [
           {
             "name": "id",
@@ -176,7 +176,7 @@
             "description": "Bad Request"
           },
           "401": {
-            "description": "Unauthorized"
+            "description": "Token. no valido"
           },
           "403": {
             "description": "Forbidden"
@@ -187,7 +187,7 @@
         }
       },
       "delete": {
-        "description": "",
+        "description": "Elimina un usuario específico mediante su ID. Requiere autenticación y permisos de administrador.",
         "parameters": [
           {
             "name": "id",
@@ -206,7 +206,7 @@
             "description": "OK"
           },
           "401": {
-            "description": "Unauthorized"
+            "description": "Token. no valido"
           },
           "403": {
             "description": "Forbidden"
