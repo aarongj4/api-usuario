@@ -1,8 +1,8 @@
 import userModel from '../models/users.js';
 import bcrypt from 'bcrypt';
 import { validarPassword } from '../utils/validarPassword.js';
-import { generarToken } from '../helpers/autenticacion.js';
 import jsonwebtoken from 'jsonwebtoken';
+import { generarToken } from '../services/jwt.js';
 
 class usersController {
 
@@ -21,6 +21,7 @@ class usersController {
         if (!usuarioExiste) {
             return res.status(400).json({ error: 'El usuario no existe' });
         }
+        
 
         const passwordValid = await bcrypt.compare(password, usuarioExiste.password);
         if (!passwordValid) {
@@ -29,7 +30,7 @@ class usersController {
         }
 
         
-        const token = generarToken(email);
+        const token = generarToken(email, usuarioExiste.rol);
 
         return res.status(200).json({ msg: 'Usuario autenticado.', token })
     }
@@ -64,7 +65,6 @@ class usersController {
             res.status(201).json(data);
 
         } catch (error) {
-            console.log(error);
 
             res.status(500).send(error);
         }
