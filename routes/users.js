@@ -7,7 +7,7 @@ route.post('/login', usersController.login );
 
 route.post('/', usersController.create );
 route.get('/',  usersController.getAll ); 
-route.get('/:id', usersController.getOne ); 
+route.get('/:id', usersController.getOneById ); 
 route.put('/:id', usersController.update );
 route.delete('/:id', usersController.delete );
 

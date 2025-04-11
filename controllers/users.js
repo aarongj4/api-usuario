@@ -123,6 +123,17 @@ class usersController {
             res.status(500).send(error);
         }
     }
+    async getOneById(req, res) {
+        try {
+
+            const { id } = req.params;
+            const data = await userModel.getOneByID(id);
+            res.status(201).json({ data })
+
+        } catch (error) {
+            res.status(500).send(error);
+        }
+    }
 
 
 }
