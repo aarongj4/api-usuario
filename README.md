@@ -39,6 +39,21 @@ PORT=3000 SERVER_DB=<tu_servidor_de_bd> USER_DB=<usuario_bd> PASS_DB=<contraseñ
 5. Test
 -     artillery run test/carga/users-test.yaml
 
+## 🔐 Usuarios de prueba
+
+Puedes usar los siguientes usuarios para autenticarte en la API y probar los endpoints protegidos:
+
+### 👤 Usuario 1 (Admin)
+- **Email:** admin@gmail.com  
+- **Contraseña:** Admin123.
+
+### 👤 Usuario 2 (User)
+- **Email:** user@gmail.com  
+- **Contraseña:** User1234.
+
+🔸 Ambos usuarios ya están registrados en la base de datos.  
+🔸 Puedes usar el endpoint `/users/login` para obtener un token de acceso.
+
 ## 📘 Documentación con Swagger
 
 Accede desde tu navegador a:
