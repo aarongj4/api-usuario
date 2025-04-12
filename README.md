@@ -36,6 +36,8 @@ PORT=3000 SERVER_DB=<tu_servidor_de_bd> USER_DB=<usuario_bd> PASS_DB=<contraseñ
 
 4. Correr el proyecto
 -     node app.js
+5. Test
+-     artillery run test/carga/users-test.yaml
 
 ## 📘 Documentación con Swagger
 
