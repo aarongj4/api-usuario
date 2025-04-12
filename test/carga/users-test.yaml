@@ -1,0 +1,63 @@
+config:
+  target: "http://localhost:3000"
+  phases:
+    - duration: 60       
+      arrivalRate: 10
+  defaults:
+    headers:
+      Content-Type: "application/json"
+
+scenarios:
+  - name: "Prueba de carga para Login"
+    flow:
+      - post:
+          url: "/users/login"
+          json:
+            email: "admindemo@gmail.com"
+            password: "adminDemo1234.."
+          capture:
+            - json: token
+              as: authToken
+  - name: "Prueba de carga para obtener todos los usuarios"
+    flow:
+      - get:
+          url: "/users"
+          headers:
+            Authorization: "Bearer {{ token }}"
+
+  - name: "Prueba de carga para obtener un usuario específico"
+    flow:
+      - get:
+          url: "/users/67f9bbf16c156fb65fc5cc85"
+          headers:
+            Authorization: "Bearer {{ token }}"
+  - name: "Prueba de carga para /users/ (Crear usuario)"
+    flow:
+      - post:
+          url: "/users/"
+          headers:
+            Authorization: "Bearer {{ token }}"
+          json:
+            nombre: "test"
+            email: "test@gmail.com"
+            password: "Test1234."
+            rol: "user"
+            fechaRegistro: "2025-04-11"
+  - name: "Prueba de carga para /users/{id} (Actualizar usuario)"
+    flow:
+      - put:
+          url: "/users/{{ 67f9bbf16c156fb65fc5cc85 }}"
+          headers:
+            Authorization: "Bearer {{ token }}"
+          json:
+            nombre: "test"
+            email: "test@gmail.com"
+            password: "test."
+            rol: "user"
+            fechaRegistro: "2025-04-11"
+  - name: "Prueba de carga para eliminar un usuario"
+    flow:
+      - delete:
+          url: "/users/67f9bbf16c156fb65fc5cc85"
+          headers:
+            Authorization: "Bearer {{ token }}"

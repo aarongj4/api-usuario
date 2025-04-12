@@ -2,14 +2,14 @@ import express from 'express';
 const route = express.Router();
 
 import usersController from '../controllers/users.js'
-import { verificarToken } from '../helpers/autenticacion.js';
+import { permitirRoles, verificarToken } from '../helpers/autenticacion.js';
 
 route.post('/login', usersController.login );
 
-route.post('/', usersController.create );
-route.get('/',  usersController.getAll ); 
-route.get('/:id', usersController.getOneById ); 
-route.put('/:id', verificarToken, usersController.update );
-route.delete('/:id', verificarToken, usersController.delete );
+route.get('/',  verificarToken, permitirRoles('admin'), usersController.getAll ); 
+route.get('/:id', verificarToken, permitirRoles('admin', 'user'), usersController.getOneById ); 
+route.post('/', verificarToken, permitirRoles('admin', 'user'), usersController.create );
+route.put('/:id', verificarToken, permitirRoles('admin', 'user'), usersController.update );
+route.delete('/:id', verificarToken, permitirRoles('admin'), usersController.delete );
 
 export default route;

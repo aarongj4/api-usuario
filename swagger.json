@@ -2,8 +2,9 @@
   "swagger": "2.0",
   "info": {
     "title": "API de Usuarios",
-    "description": "Esta API permite gestionar Usuarios y Login",
-    "version": "1.0.0"
+    "descripcion": "Esta API permite gestionar Usuarios y Login",
+    "version": "1.0.0",
+    "description": ""
   },
   "host": "localhost:3000",
   "basePath": "/",
@@ -13,7 +14,7 @@
   "paths": {
     "/users/login": {
       "post": {
-        "description": "",
+        "description": "Este endpoint permite autenticar a un usuario con su email y contraseña.",
         "parameters": [
           {
             "name": "body",
@@ -33,18 +34,47 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Usuario autenticado."
           },
           "400": {
-            "description": "Bad Request"
+            "description": "Credenciales incorrectas"
           }
         }
       }
     },
     "/users/": {
-      "post": {
-        "description": "",
+      "get": {
+        "description": "Obtiene la lista de todos los usuarios registrados. Requiere autenticación mediante token JWT y Permisos de Administrador.",
         "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Se obtuvieron los datos"
+          },
+          "401": {
+            "description": "Token. no valido"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+      "description": "Crea un nuevo usuario con los datos proporcionados en el cuerpo de la petición. Requiere autenticación",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string"
+          },
           {
             "name": "body",
             "in": "body",
@@ -80,16 +110,11 @@
           "400": {
             "description": "Bad Request"
           },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
-      "get": {
-        "description": "",
-        "responses": {
-          "201": {
-            "description": "Created"
+          "401": {
+            "description": "Token. no valido"
+          },
+          "403": {
+            "description": "Forbidden"
           },
           "500": {
             "description": "Internal Server Error"
@@ -99,18 +124,29 @@
     },
     "/users/{id}": {
       "get": {
-        "description": "",
+        "description": "Obtiene los datos de un usuario específico según su ID.",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string"
           }
         ],
         "responses": {
-          "201": {
-            "description": "Created"
+          "200": {
+            "description": "Se obtuvieron los datos"
+          },
+          "401": {
+            "description": "Token. no valido"
+          },
+          "403": {
+            "description": "Forbidden"
           },
           "500": {
             "description": "Internal Server Error"
@@ -118,7 +154,7 @@
         }
       },
       "put": {
-        "description": "",
+        "description": "Actualiza la información de un usuario específico identificado por su ID. Requiere autenticación.",
         "parameters": [
           {
             "name": "id",
@@ -140,7 +176,10 @@
             "description": "Bad Request"
           },
           "401": {
-            "description": "Unauthorized"
+            "description": "Token. no valido"
+          },
+          "403": {
+            "description": "Forbidden"
           },
           "500": {
             "description": "Internal Server Error"
@@ -148,7 +187,7 @@
         }
       },
       "delete": {
-        "description": "",
+        "description": "Elimina un usuario específico mediante su ID. Requiere autenticación y permisos de administrador.",
         "parameters": [
           {
             "name": "id",
@@ -167,7 +206,10 @@
             "description": "OK"
           },
           "401": {
-            "description": "Unauthorized"
+            "description": "Token. no valido"
+          },
+          "403": {
+            "description": "Forbidden"
           },
           "500": {
             "description": "Internal Server Error"
